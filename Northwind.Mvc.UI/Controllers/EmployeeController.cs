@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -16,17 +14,15 @@ namespace Northwind.Mvc.UI.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress=new Uri("https://localhost:44357/api/employees/");
-            HttpResponseMessage response =await client.GetAsync("getemployees");
+            HttpResponseMessage response =await client.GetAsync("employees");
             var json=response.Content.ReadAsStringAsync().Result;
 
-            var employees = JsonConvert.DeserializeObject<List<EmployeeModel>>(json);
+            var employees = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(json);
             return View(employees);
         }
 
         public IActionResult GetEmployeeById()
         {
-          
-
             return View();
         }
     }

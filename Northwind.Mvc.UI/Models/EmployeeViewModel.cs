@@ -2,7 +2,7 @@
 
 namespace Northwind.Mvc.UI.Models
 {
-    public class EmployeeModel
+    public class EmployeeViewModel
     {
         public int EmployeeId { get; set; }
         public string LastName { get; set; }

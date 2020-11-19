@@ -29,9 +29,9 @@ namespace Northwind.Mvc.UI.Controllers
             //client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //GET Method  
-            HttpResponseMessage response = await client.GetAsync($"getemployeebyid/{id}");
+            HttpResponseMessage response = await client.GetAsync($"employees/{id}");
             var json = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<EmployeeModel>(json);
+            var result = JsonConvert.DeserializeObject<EmployeeViewModel>(json);
             return View(result);
         }
 

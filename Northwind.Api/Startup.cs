@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Northwind.Dal.Abstract;
-using Northwind.Dal.Concrete;
 using Northwind.Dal.Concrete.AdoNet;
 using Northwind.Dal.Concrete.EntityFramework;
 using Northwind.Dal.Concrete.EntityFramework.Contexts;
@@ -32,7 +24,7 @@ namespace Northwind.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IEmployeeDal, EfEmployeeDal>();
+            services.AddTransient<IEmployeeDal, AdoEmployeeDal>();
             services.AddDbContext<NorthwindContext>(options =>
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnection"));

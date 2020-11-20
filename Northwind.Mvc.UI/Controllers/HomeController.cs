@@ -16,20 +16,21 @@ namespace Northwind.Mvc.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HttpClient _client;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
+            _client = clientFactory.CreateClient();
         }
 
         public async Task<IActionResult> Index(int id=1)
         {
-            using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44357/api/employees/");
+            _client.BaseAddress = new Uri("https://localhost:44357/api/employees/");
             //client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //GET Method  
-            HttpResponseMessage response = await client.GetAsync($"employees/{id}");
+            HttpResponseMessage response = await _client.GetAsync($"employees/{id}");
             var json = response.Content.ReadAsStringAsync().Result;
             var result = JsonConvert.DeserializeObject<EmployeeViewModel>(json);
             return View(result);

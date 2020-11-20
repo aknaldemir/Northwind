@@ -10,13 +10,17 @@ namespace Northwind.Mvc.UI.Controllers
 {
     public class EmployeeController : Controller
     {
+        private readonly HttpClient _client;
+        public EmployeeController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient();
+        }
+
         public async Task<IActionResult> Index()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress=new Uri("https://localhost:44357/api/employees/");
-            HttpResponseMessage response =await client.GetAsync("employees");
+            _client.BaseAddress=new Uri("https://localhost:44357/api/employees/");
+            HttpResponseMessage response =await _client.GetAsync("employees");
             var json=response.Content.ReadAsStringAsync().Result;
-
             var employees = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(json);
             return View(employees);
         }

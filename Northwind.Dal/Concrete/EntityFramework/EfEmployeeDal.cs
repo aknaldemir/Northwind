@@ -25,5 +25,11 @@ namespace Northwind.Dal.Concrete.EntityFramework
         {
             return _context.Employees.Find(id);
         }
+
+        public void Add(Employee employee)
+        {
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
+        }
     }
 }

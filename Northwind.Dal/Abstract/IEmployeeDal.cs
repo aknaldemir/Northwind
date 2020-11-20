@@ -7,5 +7,6 @@ namespace Northwind.Dal.Abstract
     {
         List<Employee> GetEmployees();
         Employee GetEmployeeById(int id);
+        void Add(Employee employee);
     }
 }

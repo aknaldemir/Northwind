@@ -24,7 +24,7 @@ namespace Northwind.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IEmployeeDal, AdoEmployeeDal>();
+            services.AddTransient<IEmployeeDal, EfEmployeeDal>();
             services.AddDbContext<NorthwindContext>(options =>
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnection"));

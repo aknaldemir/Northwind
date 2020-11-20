@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Northwind.Dal.Abstract;
 using Northwind.Entities.Concrete;
 
@@ -94,6 +95,68 @@ namespace Northwind.Dal.Concrete.AdoNet
             _connection.Close();
 
             return employee;
+
+
+        }
+
+        public void Add(Employee employee)
+        {
+            //todo: Sql cümleciğindeki hata düzeltilecek.
+
+            string sql= @"INSERT employees 
+            (lastname,
+                firstname,
+                title,
+                titleofcourtesy,
+                birthdate,
+                hiredate,
+                address,
+                city,
+                region,
+                postalcode,
+                country,
+                homephone,
+                extension,
+                notes,
+                reportsto)
+            VALUES (LastName = @LastName,
+                FirstName = @FirstName,
+                Title = @Title,
+                TitleOfCourtesy = @TitleOfCourtesy,
+                Birthdate = @Birthdate,
+                Hiredate = @Hiredate,
+                Address = @Address,
+                City = @City,
+                Region = @Region,
+                PostalCode = @PostalCode,
+                Country = @Country,
+                HomePhone = @HomePhone,
+                Extension = @Extension,
+                Notes = @Notes,
+                ReportsTo = @ReportsTo)";
+            using SqlCommand command = new SqlCommand();
+            command.CommandType = CommandType.Text;
+            command.Connection = _connection;
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("LastName", employee.LastName);
+            command.Parameters.AddWithValue("FirstName", employee.FirstName);
+            command.Parameters.AddWithValue("Title", employee.Title);
+            command.Parameters.AddWithValue("TitleOfCourtesy", employee.TitleOfCourtesy);
+            command.Parameters.AddWithValue("BirthDate", employee.BirthDate);
+            command.Parameters.AddWithValue("HireDate", employee.HireDate);
+            command.Parameters.AddWithValue("Address", employee.Address);
+            command.Parameters.AddWithValue("City", employee.City);
+            command.Parameters.AddWithValue("Region", employee.Region);
+            command.Parameters.AddWithValue("PostalCode", employee.PostalCode);
+            command.Parameters.AddWithValue("Country", employee.Country);
+            command.Parameters.AddWithValue("HomePhone", employee.HomePhone);
+            command.Parameters.AddWithValue("Extension", employee.Extension);
+            command.Parameters.AddWithValue("Notes", employee.Notes);
+            command.Parameters.AddWithValue("ReportsTo", employee.ReportsTo);
+
+            _connection.Open();
+            command.ExecuteNonQuery();
+            _connection.Close();
 
 
         }

@@ -103,7 +103,7 @@ namespace Northwind.Dal.Concrete.AdoNet
         {
             //todo: Sql cümleciğindeki hata düzeltilecek.
 
-            string sql= @"INSERT employees 
+            string sql= @"INSERT employees
             (lastname,
                 firstname,
                 title,

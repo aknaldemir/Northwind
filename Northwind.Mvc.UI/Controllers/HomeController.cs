@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,24 +17,27 @@ namespace Northwind.Mvc.UI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly HttpClient _client;
-
         public HomeController(ILogger<HomeController> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
             _client = clientFactory.CreateClient();
         }
 
-        public async Task<IActionResult> Index(int id=1)
+        public async Task<IActionResult> Index()
         {
-            _client.BaseAddress = new Uri("https://localhost:44357/api/employees/");
-            //client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //GET Method  
-            HttpResponseMessage response = await _client.GetAsync($"employees/{id}");
-            var json = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<EmployeeViewModel>(json);
-            return View(result);
+
+            return View();
         }
+        [HttpPost]
+        public async Task<JsonResult> GetAllEmployees()
+        {
+            _client.BaseAddress = new Uri("https://localhost:44357/api/");
+            HttpResponseMessage response = await _client.GetAsync("employees");
+            var json = response.Content.ReadAsStringAsync().Result;
+            var employees = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(json);
+            return Json(employees);
+        }
+        
 
         public IActionResult Privacy()
         {

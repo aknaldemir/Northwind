@@ -1,11 +1,16 @@
-﻿@model EmployeeViewModel
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    
-    <h4>@Model.FirstName @Model.LastName</h4>
 </div>
+<div>
+    <input type="submit" id="getEmployeesBtn" value="Employee Listesi" class="btn btn-outline-info" />
+    <div id="allEmployeesDiv"></div>
+</div>
+
+
+
+

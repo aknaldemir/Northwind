@@ -29,6 +29,13 @@ namespace Northwind.Api
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("NorthwindConnection"));
                 });
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,10 +45,12 @@ namespace Northwind.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            //UseCors MiddleWare' i UseRouting ile UseAuthorization middlewareleri arasýnda olmalý.
+            app.UseCors("MyPolicy");
 
             app.UseAuthorization();
 
@@ -49,6 +58,10 @@ namespace Northwind.Api
             {
                 endpoints.MapControllers();
             });
+            
+          
+            
+
         }
     }
 }

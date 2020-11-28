@@ -32,10 +32,10 @@ namespace Northwind.Api.Controllers
         /// <returns></returns>
 
         [HttpGet("employees")]
-        public IActionResult Get()
+        public JsonResult Get()
         {
-            var employees=_employeeDal.GetEmployees();
-            return Ok(employees);
+            var employees = _employeeDal.GetEmployees();
+            return new JsonResult(employees);
         }
 
         [HttpPost("employees")]

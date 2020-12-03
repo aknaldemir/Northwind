@@ -32,6 +32,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Northwind.Web.UI", "Northwi
 		SlnRelativePath = "Northwind.Web.UI\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.DevExpress.UI", "Northwind.DevExpress.UI\Northwind.DevExpress.UI.csproj", "{349AF881-884A-40C1-8A51-3D95EADE86AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{89BAAA0E-67A7-4BC4-A27A-521A53972AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89BAAA0E-67A7-4BC4-A27A-521A53972AEE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{89BAAA0E-67A7-4BC4-A27A-521A53972AEE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{349AF881-884A-40C1-8A51-3D95EADE86AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{349AF881-884A-40C1-8A51-3D95EADE86AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{349AF881-884A-40C1-8A51-3D95EADE86AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{349AF881-884A-40C1-8A51-3D95EADE86AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

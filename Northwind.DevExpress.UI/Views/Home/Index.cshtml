@@ -1,0 +1,17 @@
+﻿@using Northwind.DevExpress.UI.Models;
+@model List<Employee>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@*@foreach (var item in Model)
+{
+    <h4>@item.FirstName</h4>
+}*@
+
+
+@Html.Action("GridViewPartialEmployee")

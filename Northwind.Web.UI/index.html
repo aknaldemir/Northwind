@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,22 @@
     <div class="container mt-5">
         <h1 class="mb-4">Employee Pages</h1>
         <input type="submit" id="getEmployeesBtn" class="btn btn-primary" value="Get Employees">    
-        <div id="employeesSection"></div>
+        <div id="employeesSection">
+            
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">City</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+
+        </div>
     </div>
     <script src="index.js"></script>
 </body>

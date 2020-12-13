@@ -1,0 +1,25 @@
+﻿@using System.Web.UI.WebControls
+@model Northwind.DevExpress.UI.ViewModels.EmployeeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee/Index</h2>
+
+@Html.TextBoxFor(m => m.Employee.FirstName, new { Name = "FirstName", id = "firstName", @class = "form-control" })
+@Html.TextBoxFor(m => m.Employee.LastName, new { Name = "LastName", id = "lastName", @class = "form-control" })
+@Html.TextBoxFor(m => m.Employee.Country, new { Name = "Country", id = "country", @class = "form-control" })
+
+
+@Html.DevExpress().DateEdit(settings =>
+{
+settings.Name = "dateEdit1";
+settings.Properties.DisplayFormatString = "D";
+settings.Date = Model.InsertedDate;
+settings.Width = Unit.Percentage(25);
+settings.Properties.CalendarProperties.FastNavProperties.DisplayMode = FastNavigationDisplayMode.Inline;
+settings.Style["width"] = "50%";
+}).GetHtml()
+
+
